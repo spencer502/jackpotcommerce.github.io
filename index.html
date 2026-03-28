@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jackpot Commerce — Wholesale Distribution</title>
+<meta name="description" content="Jackpot Commerce is a wholesale distribution company based in Las Vegas, Nevada. We source and distribute branded consumer products to national retail chains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #FFFFFF;
+  --bg-card: #F7F7F8;
+  --bg-card-hover: #EFEFF1;
+  --border: #E5E5E7;
+  --text-primary: #1A1A1A;
+  --text-secondary: #5C5C5C;
+  --text-muted: #8A8A8A;
+  --accent: #1A1A1A;
+  --accent-dim: rgba(26, 26, 26, 0.04);
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Utility */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+a { color: inherit; text-decoration: none; }
+
+/* Nav */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1.15rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--text-primary); }
+.nav-cta {
+  background: var(--text-primary); color: var(--bg) !important;
+  padding: 8px 20px; border-radius: 6px;
+  font-weight: 600 !important; font-size: 0.825rem !important;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* Mobile nav */
+.nav-toggle { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+
+/* Hero */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding-top: 72px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(26, 26, 26, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-content { max-width: 800px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 0.8rem; font-weight: 500;
+  color: var(--accent);
+  margin-bottom: 32px;
+  letter-spacing: 0.03em;
+}
+.hero-tag::before {
+  content: '';
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero p {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.7;
+  margin-bottom: 40px;
+}
+.hero-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--text-primary); color: var(--bg);
+  padding: 14px 32px; border-radius: 8px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  border: none; cursor: pointer;
+}
+.hero-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+.hero-btn svg { width: 16px; height: 16px; }
+
+/* Stats strip */
+.stats {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.stat { text-align: center; }
+.stat-value {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.stat-value span { color: var(--accent); }
+.stat-label {
+  font-size: 0.85rem; color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Capabilities */
+.capabilities { padding: 120px 0; }
+.section-header { margin-bottom: 64px; }
+.section-tag {
+  font-size: 0.75rem; font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  max-width: 600px;
+}
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.cap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 32px;
+  transition: all 0.3s;
+}
+.cap-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(26, 26, 26, 0.15);
+  transform: translateY(-2px);
+}
+.cap-icon {
+  width: 44px; height: 44px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(26, 26, 26, 0.08);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  color: var(--accent);
+}
+.cap-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.cap-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* About */
+.about {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.about-details {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px;
+}
+.about-detail-row {
+  display: flex; justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.about-detail-row:last-child { border-bottom: none; padding-bottom: 0; }
+.about-detail-row:first-child { padding-top: 0; }
+.detail-label {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.detail-value {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* CTA */
+.cta-section {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+.cta-box {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(26, 26, 26, 0.02) 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 80px 64px;
+  text-align: center;
+}
+.cta-box h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.cta-box p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 36px;
+  line-height: 1.65;
+}
+
+/* Contact */
+.contact {
+  padding: 120px 0;
+  border-top: 1px solid var(--border);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  margin-top: 64px;
+}
+.contact-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+}
+.contact-card h4 {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+.contact-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.contact-card a {
+  color: var(--accent);
+  transition: opacity 0.2s;
+}
+.contact-card a:hover { opacity: 0.7; }
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 48px 0;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-left p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.footer-links { display: flex; gap: 24px; }
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--text-secondary); }
+
+/* Legal pages */
+.legal-page {
+  padding: 140px 0 80px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.legal-page h1 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.legal-page .legal-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+}
+.legal-page h2 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.legal-page p {
+  font-size: 0.925rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* Animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 72px; left: 0; right: 0;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    padding: 24px 32px; gap: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-toggle { display: block; }
+  .hero { min-height: 85vh; padding-top: 100px; }
+  .hero h1 { font-size: 2.4rem; }
+  .stats-grid { grid-template-columns: 1fr; gap: 24px; }
+  .cap-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .cta-box { padding: 48px 28px; }
+  .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo"><img src="logo.png" alt="Jackpot Commerce" style="height:36px;"></a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#capabilities">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">Las Vegas, Nevada</div>
+      <h1>Wholesale distribution.<br><em>National scale.</em></h1>
+      <p>Jackpot Commerce sources and distributes branded consumer products to major retail chains across the United States. From procurement to delivery, we move product at volume.</p>
+      <a href="#contact" class="hero-btn">
+        Get in Touch
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid fade-in">
+      <div class="stat">
+        <div class="stat-value">Exclusive Partnerships</div>
+        <div class="stat-label">Brand-Authorized Inventory</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">National Reach</div>
+        <div class="stat-label">Major Retail Chains</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">Full Service</div>
+        <div class="stat-label">We Buy, Ship, and Deliver</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Capabilities -->
+<section class="capabilities" id="capabilities">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">What We Do</div>
+      <h2>Moving product into national retail channels.</h2>
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card fade-in">
+        <div class="cap-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+        </div>
+        <h3>Sourcing & Procurement</h3>
+        <p>Through exclusive brand partnerships, we purchase inventory directly from manufacturers and authorized distributors — then place it into the right retail channels at scale.</p>
+      </div>
+      <div class="cap-card fade-in">
+        <div class="cap-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.15c0 .415.336.75.75.75z" /></svg>
+        </div>
+        <h3>Retail Distribution</h3>
+        <p>We maintain active vendor relationships with national retail chains. Our partners trust us to deliver on time, in full, and at the standard their operations require.</p>
+      </div>
+      <div class="cap-card fade-in">
+        <div class="cap-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
+        </div>
+        <h3>Logistics & Fulfillment</h3>
+        <p>From warehouse to loading dock, we coordinate freight, labeling, palletization, and delivery to retailer distribution centers on schedule and in spec.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">About</div>
+      <h2>Built for wholesale at scale.</h2>
+    </div>
+    <div class="fade-in" style="max-width:640px;">
+      <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.75;margin-bottom:20px;">Jackpot Commerce is a Las Vegas-based wholesale distribution company specializing in branded consumer products for national retail accounts.</p>
+      <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.75;margin-bottom:20px;">We operate as a buy-sell wholesale distributor — purchasing inventory through exclusive brand partnerships and delivering it into retail channels that move volume.</p>
+      <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.75;">Our team brings deep experience in consumer products, retail operations, supply chain management, and brand strategy. We understand what major retailers demand from their vendor partners, and we deliver on it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box fade-in">
+      <h2>Looking for a distribution partner?</h2>
+      <p>We work with brands who want reliable, compliant placement into national retail — and retailers who want a vendor they can count on.</p>
+      <a href="#contact" class="hero-btn">
+        Let's Talk
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" /></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="section-tag">Contact</div>
+      <h2>Get in touch.</h2>
+    </div>
+    <div class="fade-in" style="max-width:480px;">
+      <p style="font-size:1.05rem;color:var(--text-secondary);line-height:1.7;margin-bottom:28px;">Interested in working together? Drop us a line and someone from our team will be in touch within one business day.</p>
+      <a href="mailto:info@jackpotcommerce.com" class="hero-btn">
+        info@jackpotcommerce.com
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p>&copy; 2026 Jackpot Commerce. All rights reserved.</p>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll animation -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
